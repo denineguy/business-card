@@ -1,0 +1,176 @@
+body {
+  background-color: #EDEDF5;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+/* This will house the 3D space Perspective will activate a 3D space I use this on the parent element so that each child shares the same 3D space*/
+input[type=checkbox] {
+/*   visibility: hidden; */
+  display: none;
+}
+
+label.container {
+  border-radius: 5px;
+  display: block;
+  height: 400px;
+  margin: 0 auto;
+  -webkit-perspective: 1200px;
+  perspective: 1200px;
+  position: relative;
+  vertical-align: middle;
+  transform: translateY(35%);
+  -webkit-transform: translateY(35%);
+  width: 650px;
+}
+
+/* This will be the wrapper for the 3D object
+perspective only applies to direct descendants for subsequent children to inherit the perspective and live in the same 3D space you need to add a transform-style: preserve-3D
+*/
+.card {
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 4px rgba(0,0,0,.3);
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+  width: 100%;
+}
+
+/* use backface-visibility: hidden to hide the reverse sides of the faces when they are faced away from the viewer, */
+.card .card-face {
+ -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 25px 30px;
+  position: absolute;
+  width: 100%;
+}
+
+/* This is the front face of the card */
+.card .front {
+  background: url("../images/bg1.png") no-repeat;
+  background-size: cover;
+  color: white;
+  width: 100%;
+}
+
+/* This is the back face of the card*/
+.card > .back {
+  background: url("../images/denine.jpg") no-repeat;
+  background-size: cover;
+  color: white;
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+
+input[type=checkbox]:checked ~ label .card {
+  transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
+}
+
+input[type=checkbox] ~ label:hover .card {
+  box-shadow: 0px 15px 10px rgba(0,0,0,.3);
+  transform: rotateX(30deg);
+  -webkit-transform: rotateX(30deg);
+}
+
+input[type=checkbox]:checked ~ label:hover .card{
+  box-shadow: 0px 15px 15px rgba(255,255,255,.6);
+  transform: rotateX(210deg);
+  -webkit-transform: rotateX(210deg);
+}
+
+/* card content */
+.front .flip,
+.back .flip {
+  border-radius: 5px;
+  position: absolute;
+  right: 30px;
+  top: 25px;
+}
+
+.front h1 {
+  font-weight: 300;
+  font-size: 3em;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0;
+
+}
+
+.front h4 {
+  font-size: 1.15em;
+  font-weight: 100;
+  margin: 0;
+}
+
+.front .info {
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.5em;
+  margin: 2em 0;
+  width: 90%;
+}
+
+.front .contact {
+  color: #ff97e6;
+  margin-bottom: 2.5em;
+}
+
+.front .contact > span {
+  margin-left: 3.5em;
+}
+
+.front .encyclopedia,
+.front .social-media {
+  border-radius: 50px;
+  height: 40px;
+  width: 40px;
+}
+
+.front .encyclopedia {
+  background-size: cover;
+  display: block;
+}
+
+.front .social-media {
+  display: inline-block;
+  margin-left: 1em;
+}
+
+.front .inline {
+  display: inline-block;
+}
+
+.front .link {
+  margin: 0 9.5em 0 0;
+  vertical-align: top;
+}
+.front .inline p {
+  line-height: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.front .inline p span {
+  color: #ff97e6;
+}
+
+.front .inline p:last-child {
+  color: #c2a0e2;
+}
+
+.back .name {
+  background-color: rgba(255,255,255, .5);
+  border-radius: 5px;
+  bottom: 5px;
+  color: #7430d4;
+  display: inline-block;
+  font-weight: 400;
+  padding: 5px 10px;
+  position: absolute;
+}
